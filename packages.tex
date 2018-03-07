@@ -1,0 +1,78 @@
+%% Language and font encodings
+%\usepackage[english]{babel}
+%\usepackage[utf8x]{inputenc}
+%\usepackage[T1]{fontenc}
+%% Sets page size and margins
+\usepackage[a4paper,top=2cm,bottom=1.25cm,left=2.5cm,right=2.5cm,marginparwidth=0.75cm]{geometry}
+%fonts
+\usepackage{mathptmx}
+% Graphics
+%\usepackage{ wasysym }
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{tikzpagenodes}
+\usepackage{standalone}
+\usetikzlibrary{shapes}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\graphicspath{{images/}{images/logos/}}%{images/upot/}{images/bond/}{images/diff/}}
+% links are blue
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+%tables
+\usepackage{tabularx}
+%\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{siunitx}
+%include pdfs
+\usepackage{pdfpages}
+% headers
+\usepackage{fancyhdr}
+% Symbols
+\usepackage{amssymb}
+
+\renewcommand{\headrulewidth}{0pt}
+\usepackage[labelfont=bf]{caption} 
+\pagestyle{fancy}
+%\fancyhf{}
+\rhead{\textit{Trunov}}
+\lhead{\textit{22245933}}
+%\rfoot{\thepage}
+
+% bibliography
+\usepackage[sort&compress,numbers,super]{natbib}
+
+%\bibliographystyle{abbrv}
+%\bibliographystyle{unsrtnat}
+\bibliographystyle{achemso}
+
+\ExplSyntaxOn
+  \cs_new_eq:NN \calc \fp_eval:n
+\ExplSyntaxOff
+
+\newcommand*{\formatNumber}[2][]{\num[%
+  round-mode=places,% Round output to specified number of places
+  round-precision=2,% Round-precision is 3
+  %output-decimal-marker={,},% Use , as decimal marker
+  #1% Other options
+  ]{\calc{#2}}}
+
+\newcommand*{\formatNumberr}[2][]{\num[%
+  round-mode=places,% Round output to specified number of places
+  round-precision=3,% Round-precision is 3
+  %output-decimal-marker={,},% Use , as decimal marker
+  #1% Other options
+  ]{\calc{#2}}}
+
+\pgfplotsset{compat=1.8}
+% for column in title
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{Z}{>{\hsize=.3\textwidth}X}
+
+\newcommand{\beginsupplement}{%
+        \setcounter{table}{0}
+        \renewcommand{\thetable}{S\arabic{table}}%
+        \setcounter{figure}{0}
+        \renewcommand{\thefigure}{S\arabic{figure}}%
+     }
