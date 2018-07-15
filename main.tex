@@ -1,6 +1,10 @@
 \documentclass[11pt]{article}
 % Package for MAP miniproject reports
 \usepackage{map}
+% create diagrams from csv files
+\usepackage{pgfplots}
+% Create caption for subfigures
+\usepackage{subcaption}
 % bibliography
 \usepackage[sort&compress,numbers,super]{natbib}
 \bibliographystyle{achemso}
@@ -11,8 +15,8 @@
 
 
 
-%Adjust the font size using modifier commands (\Large, \large, \small...)
-\title{\LARGE{Miniproject title. Please limit your title to two lines at max. Longer titles are discouraged}}
+%Insert title here. Please limit your title to two lines at max. Adjust the font size using modifier commands (\Large, \large, \small...)
+\title{\LARGE{Miniproject title}}
 % Insert your name and surname
 \author{Surname, Name}
 % To specify your signature on the title page please replace file images/signature.pdf with a file with your signature
@@ -50,6 +54,8 @@ Enter abstract here -- max 250 words.
 	\input{introduction}
     \input{section1}
     \input{section2}
+    \input{section3}
+    \input{conclusion}
 
 
 \section*{Acknowledgments}
