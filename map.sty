@@ -1,31 +1,233 @@
-\ProvidesPackage{mapminiproject}[29/11/2017 package for MAP miniproject elite-map.tf.uni-erlangen.de]
+\ProvidesPackage{map}[29/11/2017 package for MAP miniproject elite-map.tf.uni-erlangen.de]
 
+\RequirePackage[a4paper,top=2cm,bottom=1.25cm,left=2.5cm,right=2.5cm,marginparwidth=0.75cm]{geometry}
+% Links
+\RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
 \RequirePackage{graphicx}
+\RequirePackage{mathptmx}
+\RequirePackage{tikz}
+% Different line spacing
+\RequirePackage{setspace}
+% Tables with student data
+\RequirePackage{tabularx}
+\newcolumntype{s}{>{\setlength{\baselineskip}{0.7\baselineskip}\hsize=.26\textwidth}X}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+% thick lines for tables
+\RequirePackage{makecell}
+\graphicspath{{images/}{images/logos/}}
 
-\@ifpackageloaded{geometry}{}{\RequirePackage[pass]{geometry}}
 
-\newcommand*{\project}[1]{\gdef\@project{#1}}
-\newcommand*{\@project}{Final Year Project}
-\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
-\newcommand*{\@supervisor}{\texttt{\string\supervisor} currently not set. Please fix this.}
+% MAP commands
+% SUPEVISOR
+\newcommand\supervisor[1]{\renewcommand\@supervisor{#1}}
+\newcommand\@supervisor{\@latex@error{No \noexpand\supervisor given}\@ehc}
+% DIRECT SUPEVISOR
+\newcommand\dsupervisor[1]{\renewcommand\@dsupervisor{#1}}
+\newcommand\@dsupervisor{\@latex@error{No \noexpand\dsupervisor given}\@ehc}
+% DEPARTMENT
+\newcommand\department[1]{\renewcommand\@department{#1}}
+\newcommand\@department{\@latex@error{No \noexpand\department given}\@ehc}
+% SEMESTER
+\newcommand\semester[1]{\renewcommand\@semester{#1}}
+\newcommand\@semester{\@latex@error{No \noexpand\semester given}\@ehc}
+% ECTS
+\newcommand\ects[1]{\renewcommand\@ects{#1}}
+\newcommand\@ects{\@latex@error{No \noexpand\ects given}\@ehc}
+% FOCAL SUBJECT
+\newcommand\focsubj[1]{\renewcommand\@focsubj{#1}}
+\newcommand\@focsubj{\@latex@error{No \noexpand\focsubj given}\@ehc}
+% MATRIKEL NUM
+\newcommand\matrnum[1]{\renewcommand\@matrnum{#1}}
+\newcommand\@matrnum{\@latex@error{No \noexpand\matrnum given}\@ehc}
+% ABSTRACT
+\newcommand\myabstract[1]{\renewcommand\@myabstract{#1}}
+\newcommand\@myabstract{\@latex@error{No \noexpand\myabstract given}\@ehc}
+% FROM SUPERVISOR
+% GRADE
+\newcommand\grade[1]{\renewcommand\@grade{#1}}
+\newcommand\@grade{\@latex@error{No \noexpand\grade given}\@ehc}
+% COMMENTS
+\newcommand\comments[1]{\renewcommand\@comments{#1}}
+\newcommand\@comments{\@latex@error{No \noexpand\comments given}\@ehc}
+% CITY
+\newcommand\city[1]{\renewcommand\@city{#1}}
+\newcommand\@city{\@latex@error{No \noexpand\city given}\@ehc}
+
+
 \renewcommand*{\maketitle}{%
-  \begin{titlepage}
-  \newgeometry{left=3cm,right=3cm,bottom=2cm,top=3cm}
-  {\raggedleft\includegraphics[width=3cm]{example-image-16x9}\par}
-  \vspace{1cm}
-  \centering
-  {\scshape\LARGE Columbidae University \par}
-  \vspace{1cm}
-  {\scshape\Large\@project\unskip\strut\par}
-  \vspace{1.5cm}
-  {\huge\bfseries\@title\unskip\strut\par}
-  \vspace{2cm}
-  {\Large\itshape\@author\unskip\strut\par}
-  \vfill
-  supervised by\par
-  \@supervisor\unskip\strut\par
-  \vfill
-  {\large \@date\par}
-  \end{titlepage}
+
+\begin{titlepage}
+% Turn off page numbering for title pages
+\pagenumbering{gobble}
+\begin{center}
+	\Large{
+		\textbf{Elite Master\'{}s Programme in} \\
+		\textbf{Advanced Materials and Processes}
+	}
+\end{center}
+\centering
+\Large{\textbf{Miniproject Report}}
+\\[2mm]
+%%\centering
+\textbf{\@semester}
+\\[4mm]
+\@title
+\\[6mm]
+\Large{This miniproject is in partial fulfilment (\@ects \ 
+	    ECTS) of the M4 Module in the focal 
+	subject "\@focsubj"}   
+\\[4mm]
+\vspace*{\fill}
+\begin{centering}
+	\begin{tabularx}{\textwidth}{|s|Y|}
+		\hline
+		{\small Student\'{}s Name} & 
+		{\large \@author}
+		\\
+		\hline
+		{\small Matriculation Number} &
+		{\large \@matrnum}
+		\\
+		\hline
+		{\small Senior Supervisor} & 
+		{\large \@supervisor}
+		\\
+		\hline
+		{\small Direct Supervisor (where
+			applicable)} & 
+		{\large \@dsupervisor}
+		\\
+		\hline
+		{\small Institute where miniproject
+			was carried out} &
+		{\large \@department}
+		\\
+		\hline
+	\end{tabularx}
+\end{centering}
+\\[2mm]
+
+
+\fbox{\begin{minipage}[t][10cm][t]{0.99\textwidth}
+		\normalsize{\textbf{Abstract}
+		\begin{spacing}{1}
+		\@myabstract
+		\end{spacing}	
+		}
+\end{minipage}}
+\\[2mm]
+
+
+\begin{minipage}{\textwidth}
+\begin{spacing}{1}
+	\normalsize
+I hereby declare that this project report is my own work, that I have only made use of the cited and/or acknowledged documents/resources and that this report has not been previously submitted as academic coursework elsewhere.
+\end{spacing}
+\end{minipage}
+\begin{minipage}{\textwidth}
+{\small \@city, \today}
+\end{minipage}
+\begin{tabularx}{\textwidth}{|s|Y|}
+		\Xhline{2pt}
+	{\small City, Date} & 
+	{\small Signature}
+	\\
+	\hline
+\end{tabularx}
+
+% MAP Logo
+\begin{tikzpicture}[remember picture,overlay] 
+\node [xshift=3.81cm,yshift=-1.95cm] at (current page.north west)
+{
+	\includegraphics[width=4.13cm]{map}
+};		 
+\end{tikzpicture}
+% TECHFAK Logo
+\begin{tikzpicture}[remember picture,overlay] 
+\node [xshift=17.5cm,yshift=-1.95cm] at (current page.north west)
+{
+	\includegraphics[width=5.19cm]{tech_fac}
+};		 
+\end{tikzpicture}
+
+\newpage
+\begin{center}
+	\Large{
+		\textbf{Elite Master\'{}s Programme in} \\
+		\textbf{Advanced Materials and Processes}
+	}
+\end{center}
+\centering
+\Large{\textbf{Miniproject Report}}
+\\[2mm]
+%%\centering
+\textbf{\@semester}
+\\[4mm]
+\LARGE{\@title}
+\\[3mm]
+\Large{Grading Sheet}
+\\[3mm]
+\Large{This miniproject is in partial fulfilment (\@ects \ 
+	ECTS) of the M4 Module in the focal 
+	subject "\@focsubj"}   
+\\[4mm]
+\vspace*{\fill}
+\begin{centering}
+	\begin{tabularx}{\textwidth}{|s|Y|}
+		\hline
+		{\small Student\'{}s Name} & 
+		{\large \@author}
+		\\
+		\hline
+		{\small Matriculation Number} &
+		{\large \@matrnum}
+		\\
+		\hline
+		{\small Grade awarded} & 
+		{\large \@grade}	
+		\\
+		\hline
+		{\small Comments} &
+		\multicolumn{1}{p{.64\textwidth}|}{\large \@comments}
+		\\[53ex]
+		\hline
+	\end{tabularx}
+\end{centering}
+\\[2mm]
+\begin{minipage}{\textwidth}
+	\begin{spacing}{1}
+		\normalsize
+		 Note to grader: Please fill in and sign this form and return by mail or electronically to Dagmar Senft (MAP Office or \href{mailto:dagmar.senft@fau.de}{dagmar.senft@fau.de}) within 1 month after the submission.
+		\end{spacing}
+	\end{minipage}
+\\[5mm]
+
+\begin{tabularx}{\textwidth}{|s|Y|}
+\Xhline{2pt}
+{\small City, Date} & 
+{\small Signature}
+\\
+\hline
+\end{tabularx}
+
+% MAP Logo
+\begin{tikzpicture}[remember picture,overlay] 
+\node [xshift=3.81cm,yshift=-1.95cm] at (current page.north west)
+{
+	\includegraphics[width=4.13cm]{map}
+};		 
+\end{tikzpicture}
+% TECHFAK Logo
+\begin{tikzpicture}[remember picture,overlay] 
+\node [xshift=17.5cm,yshift=-1.95cm] at (current page.north west)
+{
+	\includegraphics[width=5.19cm]{tech_fac}
+};		 
+\end{tikzpicture}
+
+\end{titlepage}
+
+
 }
+
 \endinput
