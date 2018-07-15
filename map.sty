@@ -1,6 +1,6 @@
 \ProvidesPackage{map}[29/11/2017 package for MAP miniproject elite-map.tf.uni-erlangen.de]
 
-\RequirePackage[a4paper,top=2cm,bottom=1.25cm,left=2.5cm,right=2.5cm,marginparwidth=0.75cm]{geometry}
+\RequirePackage[a4paper,top=2cm,bottom=1.4cm,left=2.5cm,right=2.5cm,marginparwidth=0.75cm]{geometry}
 % Links
 \RequirePackage[colorlinks=true, allcolors=blue]{hyperref}
 \RequirePackage{graphicx}
@@ -11,10 +11,15 @@
 % Tables with student data
 \RequirePackage{tabularx}
 \newcolumntype{s}{>{\setlength{\baselineskip}{0.7\baselineskip}\hsize=.26\textwidth}X}
+\newcolumntype{S}{>{\arraybackslash}X}
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
+% Create footer with name and matrik number
+\RequirePackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhead{\textit{\@matrnum} \hspace*{0pt}\hfill \textit{\@author}}
+\renewcommand{\headrulewidth}{0pt}
 % thick lines for tables
 \RequirePackage{makecell}
-\graphicspath{{images/}{images/logos/}}
 
 
 % MAP commands
@@ -58,7 +63,7 @@
 
 \begin{titlepage}
 % Turn off page numbering for title pages
-\pagenumbering{gobble}
+%\pagenumbering{gobble}
 \begin{center}
 	\Large{
 		\textbf{Elite Master\'{}s Programme in} \\
@@ -70,13 +75,13 @@
 \\[2mm]
 %%\centering
 \textbf{\@semester}
-\\[4mm]
+\\[3mm]
 \@title
-\\[6mm]
+\\[3mm]
 \Large{This miniproject is in partial fulfilment (\@ects \ 
 	    ECTS) of the M4 Module in the focal 
 	subject "\@focsubj"}   
-\\[4mm]
+\\[2mm]
 \vspace*{\fill}
 \begin{centering}
 	\begin{tabularx}{\textwidth}{|s|Y|}
@@ -105,10 +110,10 @@
 		\hline
 	\end{tabularx}
 \end{centering}
-\\[2mm]
+\\[4mm]
 
 
-\fbox{\begin{minipage}[t][10cm][t]{0.99\textwidth}
+\fbox{\begin{minipage}[t][10.9cm][t]{0.99\textwidth}
 		\normalsize{\textbf{Abstract}
 		\begin{spacing}{1}
 		\@myabstract
@@ -127,30 +132,37 @@ I hereby declare that this project report is my own work, that I have only made 
 \begin{minipage}{\textwidth}
 {\small \@city, \today}
 \end{minipage}
-\begin{tabularx}{\textwidth}{|s|Y|}
+\begin{tabularx}{\textwidth}{|s|S|}
 		\Xhline{2pt}
 	{\small City, Date} & 
 	{\small Signature}
 	\\
 	\hline
 \end{tabularx}
-
+% Signature
+\begin{tikzpicture}[remember picture,overlay] 
+\node [xshift=9.81cm,yshift=3.2cm] at (current page.south west)
+{
+	\includegraphics[width=4.13cm]{signature}
+};
+\end{tikzpicture}
 % MAP Logo
 \begin{tikzpicture}[remember picture,overlay] 
-\node [xshift=3.81cm,yshift=-1.95cm] at (current page.north west)
+\node [xshift=3.81cm,yshift=-2.5cm] at (current page.north west)
 {
 	\includegraphics[width=4.13cm]{map}
 };		 
 \end{tikzpicture}
 % TECHFAK Logo
 \begin{tikzpicture}[remember picture,overlay] 
-\node [xshift=17.5cm,yshift=-1.95cm] at (current page.north west)
+\node [xshift=17.5cm,yshift=-2.6cm] at (current page.north west)
 {
 	\includegraphics[width=5.19cm]{tech_fac}
 };		 
 \end{tikzpicture}
-
 \newpage
+% Turn off fancy on this page
+\thispagestyle{empty}
 \begin{center}
 	\Large{
 		\textbf{Elite Master\'{}s Programme in} \\
@@ -162,7 +174,7 @@ I hereby declare that this project report is my own work, that I have only made 
 \\[2mm]
 %%\centering
 \textbf{\@semester}
-\\[4mm]
+\\[3mm]
 \LARGE{\@title}
 \\[3mm]
 \Large{Grading Sheet}
@@ -170,7 +182,7 @@ I hereby declare that this project report is my own work, that I have only made 
 \Large{This miniproject is in partial fulfilment (\@ects \ 
 	ECTS) of the M4 Module in the focal 
 	subject "\@focsubj"}   
-\\[4mm]
+\\[3mm]
 \vspace*{\fill}
 \begin{centering}
 	\begin{tabularx}{\textwidth}{|s|Y|}
@@ -189,7 +201,7 @@ I hereby declare that this project report is my own work, that I have only made 
 		\hline
 		{\small Comments} &
 		\multicolumn{1}{p{.64\textwidth}|}{\large \@comments}
-		\\[53ex]
+		\\[56ex]
 		\hline
 	\end{tabularx}
 \end{centering}
@@ -202,32 +214,28 @@ I hereby declare that this project report is my own work, that I have only made 
 	\end{minipage}
 \\[5mm]
 
-\begin{tabularx}{\textwidth}{|s|Y|}
+\begin{tabularx}{\textwidth}{|s|S|}
 \Xhline{2pt}
 {\small City, Date} & 
 {\small Signature}
 \\
 \hline
 \end{tabularx}
-
 % MAP Logo
 \begin{tikzpicture}[remember picture,overlay] 
-\node [xshift=3.81cm,yshift=-1.95cm] at (current page.north west)
+\node [xshift=3.81cm,yshift=-2.5cm] at (current page.north west)
 {
 	\includegraphics[width=4.13cm]{map}
 };		 
 \end{tikzpicture}
 % TECHFAK Logo
 \begin{tikzpicture}[remember picture,overlay] 
-\node [xshift=17.5cm,yshift=-1.95cm] at (current page.north west)
+\node [xshift=17.5cm,yshift=-2.6cm] at (current page.north west)
 {
 	\includegraphics[width=5.19cm]{tech_fac}
 };		 
 \end{tikzpicture}
-
 \end{titlepage}
-
-
-}
+}% maketitle 
 
 \endinput
